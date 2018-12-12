@@ -13,7 +13,34 @@ public class EntryComponent implements Comparable<EntryComponent>{
         this.name = name;
         this.victoryNum = victoryNum;
         cdImage = image.getImage();
-        image.setImage(cdImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH));
+        
+        
+        
+        
+        int imageWidth=image.getIconWidth();
+        int imageHeight=image.getIconHeight();
+        
+        
+        if(imageWidth>imageHeight) {
+        	
+        	imageHeight = (int)(imageHeight*(float)700/imageWidth);
+        	imageWidth = 700;
+        	
+        }
+        else {
+        	imageWidth = (int)(imageWidth*(float)800/imageHeight);
+        	imageHeight = 800;
+        }
+        
+        System.out.println("2,"+imageWidth+","+imageHeight);
+        
+        image.setImage(cdImage.getScaledInstance(
+        		imageWidth, 
+        		imageHeight, 
+        		Image.SCALE_SMOOTH));
+        
+
+        //image.setImage(cdImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH));
         /*
         cdImage = image2.getImage();
         image2.setImage(cdImage.getScaledInstance(700, 800, Image.SCALE_SMOOTH));

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 
 public class UserDefinedInstalizingWorldCupPanel extends JPanel {
 
@@ -149,7 +150,12 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {
             Object obj = event.getSource();
             if(obj == startButton) {
                 parentPanel.disableUDIpanel();
-                parentPanel.addMGP();
+                try {
+					parentPanel.addMGP();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
 
 

@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -24,12 +25,12 @@ public class MainGamePanel extends JPanel{
     private EntryPanel[] Tree;
     //
     private UserDefinedHistoryFrame UDHF;
-    private getImgRes imString;
+    private FILEDB imString;
     private PrimaryPanel parentPanel;
     private EndingPanel EDP;
 
 
-    public MainGamePanel(String Type, int Round, PrimaryPanel parent) {
+    public MainGamePanel(String Type, int Round, PrimaryPanel parent) throws SQLException {
         int i = 0, j = 0;
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(1440,900));
@@ -47,10 +48,10 @@ public class MainGamePanel extends JPanel{
         this.initialComponent = new EntryComponent("Images/QuestionMark/a.jpg","Images/QuestionMark/a.jpg","Who?", 0);
 
         if(Type == "여자") {
-        	imString = new getImgRes("src/code.txt", nRound);
+        	imString = new FILEDB("WOMAN", nRound);
         }
         else if(Type == "남자"){
-        	imString = new getImgRes("src/code1.txt", nRound);
+        	imString = new FILEDB("MAN", nRound);
         }
 
         eTree = new EntryComponent[nElem + 1];
@@ -78,8 +79,6 @@ public class MainGamePanel extends JPanel{
         UDHF.setTitle("현재상황");
         UDHF.setVisible(false);
 
-        System.out.println(this.Type);
-        System.out.println(this.nRound);
 
         leftPanel = Tree[nNextMatch - 1];
         leftPanel.setPtX(10);
@@ -113,7 +112,6 @@ public class MainGamePanel extends JPanel{
             public void actionPerformed(ActionEvent a){
                 resetTimerRight.start();
                 if((nNextMatch)/2 == 0){
-                    System.out.println("Panel Change!");
                     signal = 1;
                 }
                 reset(nNextMatch - 1, nNextMatch, signal, eTree[1]);
@@ -126,7 +124,6 @@ public class MainGamePanel extends JPanel{
             public void actionPerformed(ActionEvent e){
                 resetTimerLeft.start();
                 if((nNextMatch)/2 == 0){
-                    System.out.println("Panel Change!");
                     signal = 1;
                 }
                 reset(nNextMatch - 1, nNextMatch, signal, eTree[1]);

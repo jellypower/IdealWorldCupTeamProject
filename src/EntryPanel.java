@@ -19,13 +19,23 @@ public class EntryPanel extends JPanel {
         nameLabel = new JLabel(this.E.name);
         normal = new JLabel(this.E.image);
         velocity = 0;
-        normal.setBounds(0,0,700,600);
-        this.add(normal);
+        normal.setBounds(
+        		this.getWidth()/2-E.image.getIconWidth()/2,
+        		this.getHeight()/2-E.image.getIconHeight()/2,
+        		E.image.getIconWidth(),
+        		E.image.getIconHeight());
+        
+        
 
         nameLabel.setFont(new Font("궁서체", Font.BOLD, 30));
-        nameLabel.setBounds(300,710,180,40);
-        nameLabel.setForeground(Color.ORANGE);
+        nameLabel.setSize(700, 50);
+        nameLabel.setLocation(this.getWidth()/2-nameLabel.getWidth()/2,600);
+        nameLabel.setHorizontalAlignment(JLabel.CENTER);
+        nameLabel.setForeground(Color.orange);
+        nameLabel.setOpaque(true);
+        nameLabel.setBackground(new Color(0,0,0,150));
         this.add(nameLabel);
+        this.add(normal);
     }
 
     public EntryPanel(){
@@ -34,35 +44,35 @@ public class EntryPanel extends JPanel {
     	nameLabel = new JLabel();
         normal = new JLabel();
         velocity = 0;
-        normal.setBounds(0,0,700,600);
-        this.add(normal);
+        normal.setBounds(0,0,700,800);
+        
 
         nameLabel.setFont(new Font("궁서체", Font.BOLD, 30));
         nameLabel.setBounds(300,710,180,40);
         nameLabel.setForeground(Color.ORANGE);
         this.add(nameLabel);
+        this.add(normal);
     }
     
     public EntryPanel(EntryComponent E){
-    	setLayout(null);
     	setBackground(Color.BLACK);
     	this.E = E;
     	nameLabel = new JLabel(this.E.name);
         normal = new JLabel(this.E.image);
         velocity = 0;
-        normal.setBounds(0,0,700,600);
-        this.add(normal);
+        normal.setBounds(
+        		this.getWidth()/2-E.image.getIconWidth()/2,
+        		this.getHeight()/2-E.image.getIconHeight()/2,
+        		E.image.getIconWidth(),
+        		E.image.getIconHeight());
 
         nameLabel.setFont(new Font("궁서체", Font.BOLD, 30));
         nameLabel.setBounds(300,710,180,40);
         nameLabel.setForeground(Color.ORANGE);
         this.add(nameLabel);
+        this.add(normal);
     }
     
-    public void paintComponent(Graphics g) {
-    	super.paintComponent(g);
-    	g.drawImage(E.cdImage, 0, 0, 100, 100, this);
-    }
 
     public int getVelocity(){
         return this.velocity;

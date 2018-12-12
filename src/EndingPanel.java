@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -13,13 +14,15 @@ public class EndingPanel extends JPanel{
     private PrimaryPanel parent;
     private JButton backToMain;
     private EndingButtonListener btnE;
-    private getImgRes imString;
+    private FILEDB imString;
     private JLabel rankTitle;
 
     private JLabel [] rank;
 
     private ImageIcon winnerIcon;
     private JLabel winnerLabel;
+    
+    private EntryComponent E;
 
 
     public EndingPanel() {
@@ -27,7 +30,7 @@ public class EndingPanel extends JPanel{
 
     }
 
-    public EndingPanel(EntryComponent E, getImgRes imString, PrimaryPanel parent) {
+    public EndingPanel(EntryComponent E, FILEDB imString2, PrimaryPanel parent) {
 
         this.setPreferredSize(new Dimension(1440,900));
         this.setLayout(null);
@@ -36,8 +39,8 @@ public class EndingPanel extends JPanel{
         this.parent = parent;
         
         E.victoryNum++;
-        this.imString = imString;
-        this.imString.sendInformation(E);
+        this.imString = imString2;
+        //this.imString.sendInformation(E);
         this.imString.sortAllImgList();
 
         lPanel = new JPanel();
@@ -88,7 +91,8 @@ public class EndingPanel extends JPanel{
         this.btnE = new EndingButtonListener();
         this.backToMain.addActionListener(btnE);
         this.add(backToMain);
-
+        
+        this.E=E;
 
     }
 
@@ -100,9 +104,9 @@ public class EndingPanel extends JPanel{
              parent.disableEndingPanel();
              parent.enableUDIpanel();
              try {
-     			imString.writeEditedValues();
+     			imString.writeEditedValues(E);
      		} 
-             catch (IOException e1) {
+             catch (SQLException e1) {
      			// TODO Auto-generated catch block
      			e1.printStackTrace();
      		}

@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.sql.SQLException;
+
 import javax.swing.JPanel;
 
 public class PrimaryPanel extends JPanel{
@@ -23,13 +25,13 @@ public class PrimaryPanel extends JPanel{
 
     }
 
-    public void addMGP() {
+    public void addMGP() throws SQLException {
         MGP = new MainGamePanel(nSex, nRound, this);
         MGP.setBounds(0,0,1440,900);
         this.add(MGP);
     }
 
-    public void addEDP(EntryComponent E, getImgRes imString, PrimaryPanel p) {
+    public void addEDP(EntryComponent E, FILEDB imString, PrimaryPanel p) {
     	EDP = new EndingPanel(E, imString, p);
     	EDP.setBounds(0,0,1440,900);
     	this.add(EDP);
