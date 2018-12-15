@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 
+import sun.java2d.loops.ScaledBlit;
+
 public class EntryPanel extends JPanel {
     private Point pt;
     private JLabel normal;
@@ -48,8 +50,12 @@ public class EntryPanel extends JPanel {
         
 
         nameLabel.setFont(new Font("궁서체", Font.BOLD, 30));
-        nameLabel.setBounds(300,710,180,40);
+        nameLabel.setSize(700, 50);
+        nameLabel.setLocation(0,600);
+        nameLabel.setHorizontalAlignment(JLabel.CENTER);
         nameLabel.setForeground(Color.ORANGE);
+        nameLabel.setOpaque(true);
+        nameLabel.setBackground(new Color(0,0,0,150));
         this.add(nameLabel);
         this.add(normal);
     }
@@ -103,10 +109,18 @@ public class EntryPanel extends JPanel {
     }
     
     public void setEntryComponent(EntryComponent param){
-        this.E = param;
-        this.nameLabel.setText(E.name);
-        this.normal.setIcon(E.image);
-        repaint();
+        E = param;
+        nameLabel.setText(E.name);
+        normal.setIcon(E.image);
+        normal.setBounds(
+        		this.getWidth()/2-E.image.getIconWidth()/2,
+        		this.getHeight()/2-E.image.getIconHeight()/2,
+        		E.image.getIconWidth(),
+        		E.image.getIconHeight());
+        
+        
+        
+        //repaint();
     }
     
     public EntryComponent getEntryComponent() {
@@ -114,6 +128,7 @@ public class EntryPanel extends JPanel {
     }
     
     public void setSizeofElement() {
+    	
     	normal.setVisible(false);
     	nameLabel.setVisible(false);
     }

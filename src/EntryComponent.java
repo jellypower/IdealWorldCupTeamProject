@@ -32,7 +32,6 @@ public class EntryComponent implements Comparable<EntryComponent>{
         	imageHeight = 800;
         }
         
-        System.out.println("2,"+imageWidth+","+imageHeight);
         
         image.setImage(cdImage.getScaledInstance(
         		imageWidth, 

@@ -45,7 +45,7 @@ public class MainGamePanel extends JPanel{
         this.rBound = 1;
         this.signal = 0;
         this.parentPanel = parent;
-        this.initialComponent = new EntryComponent("Images/QuestionMark/a.jpg","Images/QuestionMark/a.jpg","Who?", 0);
+        this.initialComponent = new EntryComponent("Images/QuestionMark/a.jpg","Images/QuestionMark/a.jpg","", 0);
 
         if(Type == "여자") {
         	imString = new FILEDB("WOMAN", nRound);
@@ -213,14 +213,8 @@ public class MainGamePanel extends JPanel{
         public void mouseClicked(MouseEvent e){
             Object obj = e.getSource();
             if(obj == rightPanel){
-            	if(aniTimerRight.isRunning()) {
-            		
-            	}
-            	else {
-            		if(resetTimerRight.isRunning()) {
-            			
-            		}
-            		else{
+            	if( !aniTimerRight.isRunning() && !resetTimerRight.isRunning()) {
+            	
             			nWinner = nNextMatch;
             			Tree[(nNextMatch)/2] = rightPanel;
                     	eTree[(nNextMatch)/2] = rightPanel.getEntryComponent();
@@ -231,17 +225,10 @@ public class MainGamePanel extends JPanel{
                     	//Tree.get(nNextMatch/2).add(Tree.get(nWinner));
                     	aniTimerRight.start();
             		}
-            	}//if - else
+            	//if - else
             }//if-else
             else if(obj == leftPanel){
-            	if(aniTimerLeft.isRunning()) {
-            		
-            	}
-            	else{
-            		if(resetTimerLeft.isRunning()) {
-            			
-            		}
-            		else{
+            	if( !aniTimerLeft.isRunning() && !resetTimerLeft.isRunning()) {
             			nWinner = nNextMatch + 1;
             			Tree[(nNextMatch)/2] = leftPanel;
                         eTree[(nNextMatch)/2] = leftPanel.getEntryComponent();
@@ -253,24 +240,16 @@ public class MainGamePanel extends JPanel{
                         aniTimerLeft.start();
             		}
             		
-            	}//if - else
+            	//if - else
             }//if-else
         }//mouseClicked()
         @Override
-        public void mousePressed(MouseEvent e){
-
-        }
+        public void mousePressed(MouseEvent e){}
         @Override
-        public void mouseReleased(MouseEvent e){
-
-        }
+        public void mouseReleased(MouseEvent e){}
         @Override
-        public void mouseEntered(MouseEvent e){
-
-        }
+        public void mouseEntered(MouseEvent e){}
         @Override
-        public void mouseExited(MouseEvent e){
-
-        }
+        public void mouseExited(MouseEvent e){}
     }
 }

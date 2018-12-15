@@ -8,35 +8,34 @@ public class UserDefinedHistoryFrame extends JFrame{
     private EntryPanel Tree[];
     private JScrollPane p;
     public UserDefinedHistoryFrame(int entryNum, EntryComponent[] parameter) {
-        // TODO Auto-generated constructor stub
-        Tree = new EntryPanel[entryNum + 1];
 
-        this.setPreferredSize(new Dimension(144*10, 90*10));
+    	
+        this.setPreferredSize(new Dimension(1440, 900));
 
-        for(int i = 1 ; i < entryNum; i++){
-            Tree[i] = new EntryPanel(0,0,parameter[i]);
-        }
-
-        primary = new UserDefinedHistoryPanel(entryNum, Tree);
+    
+        primary = new UserDefinedHistoryPanel(entryNum, parameter,this);
+        //Frame에 올라갈 panel을 생성해 준다.
+        //인자로 대진 생성에 쓰이는 Tree를 넘겨준다. parent도 같이 넘겨준다
+        
         add(primary);
+        //프레임에 panel 올려주기
 
+        
         p = new JScrollPane(primary);
         add(p);
+        //화면에 필요한 스크롤 생성해서 올려주기
+        
+        primary.setScroll(p);
+        //primary에서 스크롤의 정보를 이용해 panel의 위치를 지정하기 대문에 primary에 스크롤의 정보를 넘겨주는 함수
 
         pack();
         setVisible(true);
-    }
-
-    public void reNewTree(EntryComponent[] parameter){
-        int k = parameter.length;
-        for(int i = 0; i < k; i++){
-            Tree[i].setEntryComponent(parameter[i]);
         }
-        primary.setEntryTree(Tree);
-    }
+
+
     
     public void sendInformation(int index, EntryComponent E) {
     	this.primary.applyChange(index, E);
     	this.primary.repaint();
-    }
+    }//모르겠음-----------------------------------------------코드 정리하고 주석 달아주세요(addRemark)
 }
